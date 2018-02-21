@@ -3,6 +3,7 @@
 SolveSuDoKu
 */
 
+
 #include <stdio.h>
 
 // 大格 高宽
@@ -11,7 +12,7 @@ SolveSuDoKu
 // 棋盘 边长
 #define LEN (9)
 
-int map[9][9]={ 
+int map[LEN][LEN]={ 
 {0, 0, 5,   0, 0, 0,   0, 0, 0}, 
 {0, 0, 0,   0, 6, 5,   8, 0, 0}, 
 {0, 7, 6,   0, 3, 0,   2, 0, 1}, 
@@ -23,6 +24,7 @@ int map[9][9]={
 {3, 0, 7,   0, 5, 0,   4, 9, 0}, 
 {0, 0, 1,   6, 4, 0,   0, 0, 0}, 
 {0, 0, 0,   0, 0, 0,   1, 0, 0} };
+//int solvemap[LEN][LEN];
 
 int check(int x, int y, int num)
 	// 检查 [x][y]格是否可以填入num 
@@ -104,12 +106,16 @@ void ScanMap(int *arr, int len)
 		scanf("%d", arr+z);
 }
 
-int main()
+
+#define TestMod 0
+	// 0 ：输入模式
+	// 1 : 预设模式 
+
+int main(int argc, char *argv[])
 {
-	printf("是否要输入[Y/N] ");
-	if( getchar()=='Y' )ScanMap(&map[0][0], LEN);
+	if( TestMod==0 )ScanMap(&map[0][0], LEN);
 	else PrintMap(&map[0][0], LEN);
-	printf("\n");
+	printf("Answer：\n");
 	
 	if( dfs(0, 0)==0 )printf("无解\n");
 	else PrintMap(&map[0][0], LEN);
@@ -118,14 +124,15 @@ int main()
 }
 
 /*
-0 0 2 0 8 0 0 4 0
-0 0 1 0 0 2 0 9 8
-4 3 0 0 1 0 0 0 0
-0 0 0 2 0 0 0 3 0
-8 0 9 0 0 0 5 0 7
-0 2 0 0 0 8 0 0 0
-0 0 0 0 4 0 0 7 1
-9 5 0 8 0 0 3 0 0
-0 6 0 0 9 0 2 0 0
+0 0 8 0 0 4 0 6 0
+0 2 0 0 0 0 0 0 8
+0 0 0 1 0 0 7 0 0 
+0 0 2 0 0 6 0 0 5
+7 0 0 0 5 0 0 0 3
+1 0 0 4 0 0 8 0 0
+0 0 3 0 0 9 0 0 0 
+6 0 0 0 0 0 0 2 0 
+0 5 0 8 0 0 4 0 0 
+
 */
 
